@@ -1,0 +1,267 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background: #eceff1;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.border-one {
+    border-bottom: 1px solid #ccc;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    border: 1px solid #33adff;
+    color: #000;
+    background: #fff;
+    
+}
+
+.submit-button:hover {
+    background: #33adff;
+    color: #fff;
+}
+
+.bid-btn {
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 30px
+}
+
+.bid-btn a {
+    padding: 10px 20px;
+    background: #33adff;
+    color: #fff;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid #33adff;
+}
+
+.bid-btn a:hover {
+    background: #fff;
+    color: #33adff;
+    border: 1px solid #33adff;
+}
+/* *************** Navbar Css ************* */
+
+header {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    z-index: 3;
+    padding: 0 60px;
+    background: #33adff;
+    -webkit-box-shadow: 0px 0px 25.5px 4.5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 25.5px 4.5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-link, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+    color: #000;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.logo {
+    color: #000;
+}
+
+.logo:hover {
+    color: #000;
+}
+
+
+
+/* *************** Category Css ************* */
+#category {
+    padding-top: 45px;
+    padding-bottom: 25px;
+}
+
+.category {
+    padding-bottom: 60px;
+}
+
+.category select {
+    border: 1px solid #33adff;
+    padding: 15px 15px;
+}
+
+.search-box {
+    padding-bottom: 60px;
+}
+
+.search-box input {
+    height: 45px;
+    width: 70%;
+    border: 1px solid #33adff;
+    padding-left: 15px;
+}
+
+/* *************** Product Css ************* */
+.product-type {
+    border-bottom: 2px solid #33adff;
+    margin-bottom: 45px;
+}
+
+.product-type h2 {
+    color: #33adff;
+}
+
+#products {
+    padding-bottom: 60px;
+}
+
+.product {
+    border: 1px solid #33adff;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.product .name {
+    border-bottom: 1px solid #33adff;
+}
+
+.product .name a {
+    font-size: 18px;
+    color: #33adff;
+    font-weight: 600;
+    padding: 15px 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.product .name a:hover {
+    color: #33adff;
+}
+
+.product .price p {
+    color: #000;
+    font-size: 20px;
+    padding: 15px 0;
+}
+
+.product .feature-image {
+    height: 285px;
+    margin-bottom: 10px;
+}
+
+.product .feature-image img {
+    height: 100%;
+    width: auto;
+}
+
+.auction-id-credit {
+    padding: 15px 15px 5px;
+    overflow: hidden;
+}
+
+.auction-id-credit .action-id {
+    float: left;
+}
+
+.auction-id-credit .credit {
+    float: right;
+    font-size: 28px;
+    color: #33adff;
+}
+
+.bid-status {
+    background: #ccc;
+    padding: 10px 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.bid-status p {
+    margin-bottom: 0;
+}
+
+.bid-status .bid-price {
+    float: left;
+    font-size: 20px;
+}
+
+/* *************** Footer Css ************* */
+footer {
+    background: #33adff;
+    padding: 20px 0;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.copyright p {
+    margin-bottom: 0;
+    color: #000;
+    font-size: 20px;
+}
+
+/* *************** Login Css ************* */
+.login-page {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border: 1px solid #33adff;
+    padding: 30px 60px;
+    border-radius: 10px;
+}
+
+.login-page input {
+    width: 100%;
+    border: 1px solid #33adff;
+    height: 45px;
+    padding-left: 15px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.login-page label {
+    font-size: 18px;
+}
+
+.submit {
+    padding: 10px 15px;
+    background: #33adff;
+    border: 1px solid #33adff;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.submit:hover {
+    background: #fff;
+    color: #33adff;
+    border: 1px solid #33adff;
+}
+
+.text a {
+    color: #33adff;
+}
+
+.buyer {
+    margin-bottom: 30px;
+}
+.buyer input { 
+    height: 20px;
+    width: 100px;
+    margin-bottom: 0;
+}
+
+.control label {
+    display: inline-block;
+}
