@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{ asset('front-end') }}/style.css">
 </head>
 <body>
-    <header>
+        @include('front-end.menu')
+    {{-- <header>
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-brand">
               <a class="logo js-scroll-trigger" href="{{ route('/')}}">Bididng System</a>
@@ -34,7 +35,7 @@
                 </ul>
           </div>
         </nav>
-    </header>
+    </header> --}}
 
     <section id="category">
         <div class="container">

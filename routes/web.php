@@ -18,3 +18,6 @@
 Auth::routes();
 
 Route::get('/', 'FrontEndController@index')->name('/');
+Route::get('registration', 'FrontEndController@registration')->name('registration');
+Route::get('user-login', 'FrontEndController@userLogin')->name('user-login');
+Route::post('user-register', 'FrontEndController@userReg')->name('user-register');
