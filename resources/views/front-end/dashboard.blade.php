@@ -7,58 +7,26 @@
 
 
   <!-- Import Template Icons CSS Files -->
-  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/font-awesome.min.css">
 
   <!-- Import Perfect ScrollBar CSS Files -->
-  <link rel="stylesheet" href="assets/css/perfect-scrollbar.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/perfect-scrollbar.css">
 
   <!-- Import Bootstrap CSS File -->
 
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/bootstrap.min.css">
 
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
 
   <!-- Import Template's CSS Files -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
-  <link rel="stylesheet" href="assets/css/index-01.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/style.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/responsive.css">
+  <link rel="stylesheet" href="{{ asset('front-end') }}/assets/css/index-01.css">
 </head>
 <body>
     <div class="content-wrapper container-fluid">
-      <aside class="left-panel">
-        <nav class="navbar">
-          <ul class="navbar-nav">
-
-            <li class="nav-item dropdown active">
-              <a class="nav-link" href="admin.html">
-                 <i class="fa fa-tachometer"></i><span class="menu-title">Dashboard</span>
-              </a>
-            </li>
-
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="add-product.html" role="button">
-                <i class="fa fa-plus"></i> <span class="menu-title">Add Product</span>
-              </a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="monthly-sell-product.html" role="button">
-                <i class="fa fa-calendar"></i> <span class="menu-title">Monthly Sell Product</span>
-              </a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="index.html" role="button">
-                <i class="fa fa-power-off"></i> <span class="menu-title">Logout</span>
-              </a>
-            </li>
-
-          </ul>
-        </nav>
-      </aside>
+     @include('front-end.admin-menu')
 
     <div class="dashboard-contents">
       <div class="contents-inner">
@@ -200,12 +168,12 @@
   </div>
 
 
-  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="assets/js/plugins.js"></script>
-  <script src="assets/js/tables/jquery.dataTables.min.js"></script>
-  <script src="assets/js/tables/dataTables.bootstrap4.min.js"></script>
+  <script src="{{ asset('front-end') }}/assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="{{ asset('front-end') }}/assets/js/plugins.js"></script>
+  <script src="{{ asset('front-end') }}/assets/js/tables/jquery.dataTables.min.js"></script>
+  <script src="{{ asset('front-end') }}/assets/js/tables/dataTables.bootstrap4.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('front-end') }}/assets/js/main.js"></script>
 
   <script>
     $(document).ready(function() {

@@ -25,6 +25,26 @@ class FrontEndController extends Controller
     public function userLogin(){
         return view('front-end.login');
     }
+    public function dashboard(){
+        return view('front-end.dashboard');
+    }
+    public function addProduct(){
+        return view('front-end.add-product');
+    }
+    public function allProduct(){
+        return view('front-end.all-product');
+    }
+    public function allOrder(){
+        return view('front-end.all-order');
+    }
+    public function monthlySellProduct(){
+        return view('front-end.monthly-sell-product');
+    }
+    public function singleProduct(){
+        return view('front-end.single-product');
+    }
+
+
     public function userReg( Request $request){
         $this->validate($request, [
             'fname' => 'required|max:30|min:2',

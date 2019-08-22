@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -18,8 +19,25 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
 
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->hasRole('Buyer')) { 
+          return redirect('/'); 
+        
+        } else if ($user->hasRole('Seller')){
+
+            return redirect('dashboard'); 
+        } else if ($user->hasRole('Admin')){
+
+            return redirect('dashboard');
+        }else{
+            $request->session()->invalidate();
+            return redirect()->back();
+        }
+    }
+
+    use AuthenticatesUsers;
     /**
      * Where to redirect users after login.
      *

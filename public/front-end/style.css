@@ -11,6 +11,10 @@ html, body {
     line-height: 1;
 }
 
+img {
+    width: 100%;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -264,4 +268,32 @@ footer {
 
 .control label {
     display: inline-block;
+}
+
+
+/* *************** Bid Product Css ************* */
+
+#bid-product-page {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.bid-product .product-image img {
+    border-radius: 10px;
+}
+
+.bid-product .product-image {
+    margin-bottom: 30px;
+}
+
+.your-bid input {
+    width: 100%;
+    border: 1px solid #33adff;
+    height: 45px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.your-bid label {
+    font-weight: 600;
 }

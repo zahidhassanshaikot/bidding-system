@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
-                        <h4 class="name"><a href="#">Samsung Galaxy Dous</a></h4>
+                        <h4 class="name"><a href="single-product.html">Samsung Galaxy Dous</a></h4>
                         <div class="price">
                             <p>BDT: 1000</p>
                         </div>
@@ -84,7 +84,7 @@
                             <p class="status">Expired</p>
                         </div>
                         <div class="bid-btn">
-                            <a href="#">Bid Now</a>
+                            <a href="{{ route('single-product')}}">Bid Now</a>
                         </div>
                     </div>
                 </div>
