@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Product;
 use App\Role;
 use App\User;
 
@@ -31,6 +33,44 @@ class FrontEndController extends Controller
     public function addProduct(){
         return view('front-end.add-product');
     }
+    public function saveProductInfo(Request $request){
+        // return $request;
+        $this->validate($request, [
+            'p_name' => 'required|max:100|min:2',
+            'price' => 'required',
+            'auction_id' => 'required',
+            'auction_credit' => 'required',
+            'bid_amount' => 'required',
+            'last_date' => 'required',
+            
+        ]);
+        $product=new Product();
+        $product->p_name=$request->p_name;
+        $product->price=$request->price;
+        $product->auction_id=$request->auction_id;
+        $product->auction_credit=$request->auction_credit;
+        $product->bid_amount=$request->bid_amount;
+        $product->last_date=$request->last_date;
+        $product->description=$request->description;
+        $product->p_type=$request->p_type;
+        $product->user_id=Auth::user()->id;
+        if ($request->file('image')) {
+            $this->validate($request, [
+                'image' => 'required|mimes:jpg,JPG,JPEG,jpeg,png|max:2048',
+            ]);
+           
+            $profilelogo = $request->file('image');
+            $fileType = $profilelogo->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "image" . rand(1, 100) . '.' . $fileType;
+            $directory = 'images/';
+            $imageUrl = $directory . $imageName;
+            Image::make($profilelogo)->save($imageUrl);
+            $product->image = $imageUrl;
+        }
+        $product->save();
+        return redirect()->back()->with('message','Info save sucessfully');
+    }
+
     public function allProduct(){
         return view('front-end.all-product');
     }

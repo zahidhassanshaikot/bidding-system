@@ -26,6 +26,7 @@ Route::get('all-product', 'FrontEndController@allProduct')->name('all-product');
 Route::get('all-order', 'FrontEndController@allOrder')->name('all-order');
 Route::get('monthly-sell-product', 'FrontEndController@monthlySellProduct')->name('monthly-sell-product');
 Route::get('single-product', 'FrontEndController@singleProduct')->name('single-product');
+Route::post('save-product-info', 'FrontEndController@saveProductInfo')->name('save-product-info');
 
 
 Route::post('user-register', 'FrontEndController@userReg')->name('user-register');
