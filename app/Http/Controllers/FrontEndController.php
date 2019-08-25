@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bid;
 use App\Product;
 use App\Role;
 use App\User;
 
-use App\RegisterCourse;
 use DB;
 use File;
 use Image;
@@ -15,11 +15,22 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FrontEndController extends Controller
 {
     public function index(){
-        return view('front-end.index');
+        $recent_prodcut=Product::orderBy('id','DESC')->take(3)->get();
+        $pns=Product::where('p_type','Mobile Phone')->orderBy('id','DESC')->take(3)->get();
+        $headphones=Product::where('p_type','Headphone')->orderBy('id','DESC')->take(3)->get();
+        $pn_covers=Product::where('p_type','Phone Cover')->orderBy('id','DESC')->take(3)->get();
+        // return $recent_prodcut;
+        return view('front-end.index',[
+            'recent_prodcut'=>$recent_prodcut,
+            'pns'=>$pns,
+            'headphones'=>$headphones,
+            'pn_covers'=>$pn_covers,
+        ]);
     }
     public function registration(){
         return view('front-end.register');
@@ -80,8 +91,27 @@ class FrontEndController extends Controller
     public function monthlySellProduct(){
         return view('front-end.monthly-sell-product');
     }
-    public function singleProduct(){
-        return view('front-end.single-product');
+    public function singleProduct($id){
+        $product=Product::find($id);
+        
+        return view('front-end.single-product',['product'=>$product]);
+    }
+    public function bidNow(Request $request ){
+        
+        $this->validate($request, [
+            'bid_price' => 'required',
+ 
+        ]);
+        if(Auth::check()){
+        $product=new Bid();
+        $product->product_id=$request->p_id;
+        $product->bidder_id=Auth::user()->id;
+        $product->bid_price=$request->bid_price; 
+        $product->save();
+        return Redirect()->back()->with('message','Successfully bid');
+    }else{
+        return Redirect()->back()->with('message','Please login for bid');
+    }
     }
 
 

@@ -66,29 +66,42 @@
                         <h2>Recent Product</h2>
                     </div>
                 </div>
+                @foreach ($recent_prodcut as $item)
+                    
                 <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
-                        <h4 class="name"><a href="single-product.html">Samsung Galaxy Dous</a></h4>
+                    <h4 class="name"><a href="{{ route('single-product',['id'=>$item->id])}}">{{ $item->p_name }}</a></h4>
                         <div class="price">
-                            <p>BDT: 1000</p>
+                            <p>BDT: {{ $item->price }}</p>
                         </div>
                         <div class="feature-image">
-                            <img src="{{ asset('front-end') }}/img/1.jpg" alt="">
+                            <img src="{{ asset($item->image) }}" alt="">
                         </div>
                         <div class="auction-id-credit">
-                            <span class="action-id">AID : bc200</span>
-                            <span class="credit">2X</span>
+                        <span class="action-id">AID : {{ $item->auction_id }}</span>
+                        <span class="credit">{{ $item->auction_credit }}</span>
                         </div>
                         <div class="bid-status">
-                            <p class="bid-price">৳ 800 </p>
-                            <p class="status">Expired</p>
+                            <p class="bid-price">৳ {{ $item->bid_amount }} </p>
+                            <p class="status">
+                            
+                            @if (Carbon\Carbon::now()->toDateString()===$item->last_date)
+                                {{ $item->last_date }}
+                                
+                            @elseif(Carbon\Carbon::now()>$item->last_date)
+                            Expired
+                            @else 
+                                 {{$item->last_date }}
+                            @endif </p>
                         </div>
                         <div class="bid-btn">
-                            <a href="{{ route('single-product')}}">Bid Now</a>
+                            <a href="{{ route('single-product',['id'=>$item->id])}}">Bid Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
+                @endforeach
+
+                {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
                         <h4 class="name"><a href="#">Samsung A8 Cover</a></h4>
                         <div class="price">
@@ -131,7 +144,7 @@
                             <a href="#">Bid Now</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -143,29 +156,44 @@
                         <h2>Mobile Phone</h2>
                     </div>
                 </div>
+
+                 @foreach ($pns as $item)
+                    
                 <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
-                        <h4 class="name"><a href="#">Samsung Galaxy Dous</a></h4>
+                    <h4 class="name"><a href="{{ route('single-product',['id'=>$item->id])}}">{{ $item->p_name }}</a></h4>
                         <div class="price">
-                            <p>BDT: 1000</p>
+                            <p>BDT: {{ $item->price }}</p>
                         </div>
                         <div class="feature-image">
-                            <img src="{{ asset('front-end') }}/img/1.jpg" alt="">
+                            <img src="{{ asset($item->image) }}" alt="">
                         </div>
                         <div class="auction-id-credit">
-                            <span class="action-id">AID : bc200</span>
-                            <span class="credit">2X</span>
+                        <span class="action-id">AID : {{ $item->auction_id }}</span>
+                        <span class="credit">{{ $item->auction_credit }}</span>
                         </div>
                         <div class="bid-status">
-                            <p class="bid-price">৳ 800 </p>
-                            <p class="status">Expired</p>
+                            <p class="bid-price">৳ {{ $item->bid_amount }} </p>
+                            <p class="status">
+                            
+                            @if (Carbon\Carbon::now()->toDateString()===$item->last_date)
+                                {{ $item->last_date }}
+                                
+                            @elseif(Carbon\Carbon::now()>$item->last_date)
+                            Expired
+                            @else 
+                                 {{$item->last_date }}
+                            @endif </p>
                         </div>
                         <div class="bid-btn">
-                            <a href="#">Bid Now</a>
+                            <a href="{{ route('single-product',['id'=>$item->id])}}">Bid Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
+                @endforeach
+
+
+                {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
                         <h4 class="name"><a href="#">Lg</a></h4>
                         <div class="price">
@@ -206,7 +234,7 @@
                             <a href="#">Bid Now</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -218,7 +246,41 @@
                         <h2>Phone Cover</h2>
                     </div>
                 </div>
+                @foreach ($pn_covers as $item)
+                    
                 <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="product">
+                    <h4 class="name"><a href="{{ route('single-product',['id'=>$item->id])}}">{{ $item->p_name }}</a></h4>
+                        <div class="price">
+                            <p>BDT: {{ $item->price }}</p>
+                        </div>
+                        <div class="feature-image">
+                            <img src="{{ asset($item->image) }}" alt="">
+                        </div>
+                        <div class="auction-id-credit">
+                        <span class="action-id">AID : {{ $item->auction_id }}</span>
+                        <span class="credit">{{ $item->auction_credit }}</span>
+                        </div>
+                        <div class="bid-status">
+                            <p class="bid-price">৳ {{ $item->bid_amount }} </p>
+                            <p class="status">
+                            
+                            @if (Carbon\Carbon::now()->toDateString()===$item->last_date)
+                                {{ $item->last_date }}
+                                
+                            @elseif(Carbon\Carbon::now()>$item->last_date)
+                            Expired
+                            @else 
+                                 {{$item->last_date }}
+                            @endif </p>
+                        </div>
+                        <div class="bid-btn">
+                            <a href="{{ route('single-product',['id'=>$item->id])}}">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
                         <h4 class="name"><a href="#">Samsung A8 Cover</a></h4>
                         <div class="price">
@@ -281,7 +343,7 @@
                             <a href="#">Bid Now</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -293,7 +355,41 @@
                         <h2>Headphone</h2>
                     </div>
                 </div>
+                @foreach ($headphones as $item)
+                    
                 <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="product">
+                    <h4 class="name"><a href="{{ route('single-product',['id'=>$item->id])}}">{{ $item->p_name }}</a></h4>
+                        <div class="price">
+                            <p>BDT: {{ $item->price }}</p>
+                        </div>
+                        <div class="feature-image">
+                            <img src="{{ asset($item->image) }}" alt="">
+                        </div>
+                        <div class="auction-id-credit">
+                        <span class="action-id">AID : {{ $item->auction_id }}</span>
+                        <span class="credit">{{ $item->auction_credit }}</span>
+                        </div>
+                        <div class="bid-status">
+                            <p class="bid-price">৳ {{ $item->bid_amount }} </p>
+                            <p class="status">
+                            
+                            @if (Carbon\Carbon::now()->toDateString()===$item->last_date)
+                                {{ $item->last_date }}
+                                
+                            @elseif(Carbon\Carbon::now()>$item->last_date)
+                            Expired
+                            @else 
+                                 {{$item->last_date }}
+                            @endif </p>
+                        </div>
+                        <div class="bid-btn">
+                            <a href="{{ route('single-product',['id'=>$item->id])}}">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="product">
                         <h4 class="name"><a href="#">Xtreme Head Phone s-811</a></h4>
                         <div class="price">
@@ -356,7 +452,7 @@
                             <a href="#">Bid Now</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

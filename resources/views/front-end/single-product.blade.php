@@ -20,22 +20,53 @@
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <div class="bid-product">
                         <div class="product-image">
-                            <img src="{{ asset('front-end') }}/img/3.jpg" alt="">
+                            <img src="{{ asset($product->image) }}" alt="">
                         </div>
                         <div class="product-description">
-                            <p>Device name : Samsung Galaxy Dous</p>
-                            <p>Price in BDT 1000</p>
-                            <p>Bid Price : 800</p>
-                            <p>Credit : 2X</p>
-                            <p>Auction Id : bc302</p>
-                            <p>Bid Status : Avaiable</p>
+                        <p>Device name : {{ $product->p_name }}</p>
+                            <p>Price in BDT {{ $product->price }}</p>
+                            <p>Bid Price : {{ $product->bid_amount }}</p>
+                            <p>Credit : {{ $product->auction_credit }}</p>
+                            <p>Auction Id : {{ $product->auction_id }}</p>
+                            <p>Bid Status : 
+                                @if (Carbon\Carbon::now()->toDateString()===$product->last_date)
+                                    {{ $product->last_date }}
+                                    
+                                @elseif(Carbon\Carbon::now()>$product->last_date)
+                                Expired
+                                @else 
+                                     {{$product->last_date }}
+                                @endif
+                            </p>
                         </div>
                         <div class="your-bid">
+
+                                @if(Session::get('message'))
+                                <div class="alert alert-success" id="message">
+                                    <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+                                </div>
+                            @endif
+                           
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+
+                                <form action="{{ route('bid-now') }}" method="POST">
+                            @csrf
                             <label for="your-bid">Enter Your Bid Price : </label>
-                            <input type="text" placeholder="Enter Your Bid Price" id="your-bid">
+                            <input type="text" name="bid_price" placeholder="Enter Your Bid Price" id="your-bid">
+                        <input type="hidden" name="p_id" value="{{ $product->id }}">
                             <div class="bid-btn">
-                                <a href="#">Bid Now</a>
+                                <input type="submit" class="btn btn-info" value="Bid Now" />
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
