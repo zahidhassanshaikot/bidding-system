@@ -32,6 +32,11 @@
       <div class="contents-inner">
         <div class="row">
           <div class="col-12">
+              @if(Session::get('message'))
+              <div class="alert alert-success" id="message">
+                  <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+              </div>
+          @endif
             <div class="section-content">
               <div class="content-head">
                 <h4 class="content-title">All Order Information </h4><!-- /.content-title -->
@@ -41,98 +46,63 @@
                 <table id="data-table" class="table data-table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>#No</th>
+                      
                       <th>Product Name</th>
                       <th>Price</th>
+                      <th>Bid Price</th>
                       <th>Auction Id</th>
                       <th>Buyer Name</th>
                       <th>Email</th>
                       <th>Phone</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
 
                   <tbody>
+                      @foreach ($bids as $item)
                     <tr>
-                      <td>01</td>
+                      
                       <td>
                         <div class="date">
-                          <h6>Samsung Galaxy Dous</h6>
+                        <h6>{{ $item->p_name }}</h6>
                         </div>
                       </td>
                       <td>
                         <div> 
-                          <h6>৳ 800</h6>
+                          <h6>৳ {{ $item->price }}</h6>
                         </div>
                       </td>
                       <td>
                         <div> 
-                          <h6>bc200</h6>
+                        <h6>{{ $item->bid_price }}</h6>
                         </div>
                       </td>
                       <td>
-                        <h6>Md. Jakir Hossain</h6>
+                        <h6>{{ $item->auction_id }}</h6>
                       </td>
                       <td>
-                        <h6>jakir@gmail.com</h6>
+                        <h6>{{ $item->fname }} {{ $item->lname }}</h6>
                       </td>
                       <td>
-                        <h6>01453574</h6>
+                        <h6>{{ $item->email }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ $item->phone_no }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ $item->status }}</h6>
                       </td>
                       <td class="action">
                         <ul>
-                          <li><a href="#" target="blank" class="accept">Accept</a></li>
-                          <li><a href="#" target="blank" class="cancel">Cancel</a></li>
+                        <li><a href="{{ route('bid-status',['status'=>'Accept','id'=>$item->id]) }}" target="blank" class="accept">Accept</a></li>
+                          <li><a href="{{ route('bid-status',['status'=>'Reject','id'=>$item->id]) }}" target="blank" class="cancel">Rejact</a></li>
                         </ul>
                       </td>
                     </tr>
-                    <tr>
-                      <td>02</td>
-                      <td>
-                        <div class="date">
-                          <h6>Samsung A8 Cover</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 200</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>mc201</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>Md. Kabir Hossain</h6>
-                      </td>
-                      <td>
-                        <h6>kabir@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>01453574323</h6>
-                      </td>
-                      <td class="action">
-                        <ul>
-                          <li><a href="#" target="blank" class="accept">Accept</a></li>
-                          <li><a href="#" target="blank" class="cancel">Cancel</a></li>
-                        </ul>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
 
-                  <tfoot>
-                    <tr>
-                      <th>#No</th>
-                      <th>Product Name</th>
-                      <th>Price</th>
-                      <th>Auction Id</th>
-                      <th>Buyer Name</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
                 </table>
               </div><!-- /.content-details -->
             </div>

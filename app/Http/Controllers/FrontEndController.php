@@ -6,7 +6,7 @@ use App\Bid;
 use App\Product;
 use App\Role;
 use App\User;
-
+use Carbon\Carbon;
 use DB;
 use File;
 use Image;
@@ -39,7 +39,18 @@ class FrontEndController extends Controller
         return view('front-end.login');
     }
     public function dashboard(){
-        return view('front-end.dashboard');
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', '=', 'Buyer');
+        })
+        ->orderBy('users.created_at', 'desc')->get();
+        return view('front-end.dashboard',[
+            'users'=>$users
+        ]);
+    }
+    public function removeUser($id){
+        $users = User::find($id);
+        $users->delete();
+        return redirect()->back()->with('message','Successfully remove user');
     }
     public function addProduct(){
         return view('front-end.add-product');
@@ -83,13 +94,42 @@ class FrontEndController extends Controller
     }
 
     public function allProduct(){
-        return view('front-end.all-product');
+        $user_id=Auth::user()->id;
+        $product=Product::where('user_id',$user_id)->get();
+        // return $product;
+        return view('front-end.all-product',[
+            'product'=>$product
+        ]);
     }
-    public function allOrder(){
-        return view('front-end.all-order');
+    public function allOrder($id){
+        $bids=Bid::where('product_id',$id)
+        ->join('users','users.id','=','bid_info.bidder_id')
+        ->join('product','product.id','=','bid_info.product_id')
+        
+        ->select('bid_info.*','product.p_name','product.price','product.auction_id','users.fname','users.lname','users.phone_no','users.email')
+        ->orderBy('bid_info.bid_price','DESC')
+        ->get();
+        // return $bids;
+        return view('front-end.all-order',['bids'=>$bids]);
+    }
+    public function bidStatus($status,$id){
+        $bid=Bid::find($id);
+        $bid->status=$status;
+        $bid->save();
+        return redirect()->back()->with('message','Bid status successfully changed');
     }
     public function monthlySellProduct(){
-        return view('front-end.monthly-sell-product');
+$month=Carbon::now()->format('Y-m');
+// return $month;
+        $bids=Bid::where('status','Accept')
+        ->where('bid_info.created_at','%like%',$month)
+        ->join('users','users.id','=','bid_info.bidder_id')
+        ->join('product','product.id','=','bid_info.product_id')
+        
+        ->select('bid_info.*','product.p_name','product.price','product.auction_id','users.fname','users.lname','users.phone_no','users.email')
+        ->orderBy('bid_info.bid_price','DESC')
+        ->get();
+        return view('front-end.monthly-sell-product',['bids'=>$bids]);
     }
     public function singleProduct($id){
         $product=Product::find($id);

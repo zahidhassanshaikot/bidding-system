@@ -38,152 +38,58 @@
               </div><!-- /.content-head -->
 
               <div class="content-details show">
-                <table id="data-table" class="table data-table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th>#No</th>
-                      <th>Product Name</th>
-                      <th>Auction Id</th>
-                      <th>Bid Price</th>
-                      <th>Buyer Email</th>
-                      <th>Phone</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>01</td>
-                      <td>
-                        <div class="date">
-                          <h6>Samsung Galaxy Dous</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>bc200</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 800</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>jakir@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>03423142</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>02</td>
-                      <td>
-                        <div class="date">
-                          <h6>Samsung A8 Cover</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>mc201</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 200</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>rakib@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>0123423142</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>03</td>
-                      <td>
-                        <div class="date">
-                          <h6>Xtreme Head Phone s-811</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>hc201</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 700</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>shajib@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>014536743</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>04</td>
-                      <td>
-                        <div class="date">
-                          <h6>Xtreme Head Phone s-811</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>hc201</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 700</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>shajib@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>014536743</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>05</td>
-                      <td>
-                        <div class="date">
-                          <h6>Lg</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>bc202</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>৳ 700</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>sakib@gmail.com</h6>
-                      </td>
-                      <td>
-                        <h6>0143425345</h6>
-                      </td>
-                    </tr>
-                  </tbody>
-
-                  <tfoot>
-                    <tr>
-                        <th>#No</th>
-                        <th>Product Name</th>
-                        <th>Auction Id</th>
-                        <th>Bid Price</th>
-                        <th>Buyer Email</th>
-                        <th>Phone</th>
-                    </tr>
-                  </tfoot>
-                </table>
+                  <table id="data-table" class="table data-table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          
+                          <th>Product Name</th>
+                          <th>Price</th>
+                          <th>Bid Price</th>
+                          <th>Auction Id</th>
+                          <th>Buyer Name</th>
+                          <th>Buyer Email</th>
+                          <th>Buyer Phone</th>
+                    
+                        </tr>
+                      </thead>
+    
+                      <tbody>
+                          @foreach ($bids as $item)
+                        <tr>
+                          
+                          <td>
+                            <div class="date">
+                            <h6>{{ $item->p_name }}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <div> 
+                              <h6>৳ {{ $item->price }}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <div> 
+                            <h6>{{ $item->bid_price }}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6>{{ $item->auction_id }}</h6>
+                          </td>
+                          <td>
+                            <h6>{{ $item->fname }} {{ $item->lname }}</h6>
+                          </td>
+                          <td>
+                            <h6>{{ $item->email }}</h6>
+                          </td>
+                          <td>
+                            <h6>{{ $item->phone_no }}</h6>
+                          </td>
+                       
+                        </tr>
+                        @endforeach
+                      </tbody>
+    
+                    </table>
               </div><!-- /.content-details -->
             </div>
           </div>

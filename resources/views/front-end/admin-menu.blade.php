@@ -22,11 +22,11 @@
           </a>
         </li>
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link" href="{{ route('all-order')}}" role="button">
             <i class="fa fa-list"></i> <span class="menu-title">All Orders</span>
           </a>
-        </li>
+        </li> --}}
 
         <li class="nav-item dropdown">
           <a class="nav-link" href="{{route('monthly-sell-product')}}" role="button">

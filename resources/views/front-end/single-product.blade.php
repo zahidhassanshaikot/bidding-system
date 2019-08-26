@@ -41,24 +41,24 @@
                         </div>
                         <div class="your-bid">
 
-                                @if(Session::get('message'))
+                            @if(Session::get('message'))
                                 <div class="alert alert-success" id="message">
                                     <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
                                 </div>
                             @endif
                            
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
 
-                                <form action="{{ route('bid-now') }}" method="POST">
+                            <form action="{{ route('bid-now') }}" method="POST">
                             @csrf
                             <label for="your-bid">Enter Your Bid Price : </label>
                             <input type="text" name="bid_price" placeholder="Enter Your Bid Price" id="your-bid">

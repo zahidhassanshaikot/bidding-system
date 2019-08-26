@@ -32,6 +32,11 @@
       <div class="contents-inner">
         <div class="row">
           <div class="col-12">
+              @if(Session::get('message'))
+              <div class="alert alert-success" id="message">
+                  <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+              </div>
+          @endif
             <div class="section-content">
               <div class="content-head">
                 <h4 class="content-title">All Buyer Information </h4><!-- /.content-title -->
@@ -41,110 +46,47 @@
                 <table id="data-table" class="table data-table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>#No</th>
+                      
                       <th>Name</th>
                       <th>Phone Number</th>
                       <th>Email</th>
+                      {{-- @if(Auth::user()->hasRole('Admin')) --}}
                       <th>Action</th>
+                      {{-- @endif --}}
                     </tr>
                   </thead>
 
                   <tbody>
+                    @foreach ($users as $user)
                     <tr>
-                      <td>01</td>
-                      <td>
-                        <div class="date">
-                          <h6>Md. Jakir Hossain</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>0123242344231</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>jakir@gmail.com</h6>
-                      </td>
-                      <td class="action">
-                        <ul>
-                          <li><a href="#" target="blank" class="message">Remove Buyer</a></li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>02</td>
-                      <td>
-                        <div class="date">
-                          <h6>Md. Russle Ahmed</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>01244342312</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>russle@gmail.com</h6>
-                      </td>
-                      <td class="action">
-                        <ul>
-                          <li><a href="#" target="blank" class="message">Remove Buyer</a></li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>03</td>
-                      <td>
-                        <div class="date">
-                          <h6>Md. Belal Hossain</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>01222333</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>belal@yahoo.com</h6>
-                      </td>
-                      <td class="action">
-                        <ul>
-                          <li><a href="#" target="blank" class="message">Remove Buyer</a></li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>04</td>
-                      <td>
-                        <div class="date">
-                          <h6>Md. Jamal Hossain</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div> 
-                          <h6>0123435</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6>jamal@gmail.com</h6>
-                      </td>
-                      <td class="action">
-                        <ul>
-                          <li><a href="#" target="blank" class="message">Remove Buyer</a></li>
-                        </ul>
-                      </td>
-                    </tr>
+                        
+                        <td>
+                          <div class="date">
+                          <h6>{{ $user->fname }} {{ $user->lname }}</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div> 
+                            <h6>{{ $user->phone_no }}</h6>
+                          </div>
+                        </td>
+                        <td>
+                        <h6>{{ $user->email }}</h6>
+                        </td>
+{{-- @if(Auth::user()->hasRole('Admin')) --}}
+                        <td class="action">
+                          <ul>
+                          <li><a href="{{ route('user-remove',['id'=>$user->id])}}" target="blank" class="message">Remove Buyer</a></li>
+                          </ul>
+                        </td>
+{{-- @endif --}}
+                      </tr>
+                    @endforeach
+                   
+                
                   </tbody>
 
-                  <tfoot>
-                    <tr>
-                        <th>#No</th>
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                  </tfoot>
+   
                 </table>
               </div><!-- /.content-details -->
             </div>
