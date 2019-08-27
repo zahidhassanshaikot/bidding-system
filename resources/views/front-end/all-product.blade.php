@@ -32,6 +32,11 @@
       <div class="contents-inner">
         <div class="row">
           <div class="col-12">
+              @if(Session::get('message'))
+              <div class="alert alert-success" id="message">
+                  <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+              </div>
+          @endif
             <div class="section-content">
               <div class="content-head">
                 <h4 class="content-title">All Order Information </h4><!-- /.content-title -->
@@ -79,6 +84,7 @@
                       <td class="action">
                         <ul>
                           <li><a href="{{ route('all-order',['id'=>$item->id])}}" target="blank" class="accept">Bids</a></li>
+                          <li><a href="{{ route('remove-product',['id'=>$item->id])}}" class="message">remove</a></li>
                         </ul>
                       </td>
                     </tr>

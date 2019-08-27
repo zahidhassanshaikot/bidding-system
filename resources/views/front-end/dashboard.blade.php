@@ -50,9 +50,9 @@
                       <th>Name</th>
                       <th>Phone Number</th>
                       <th>Email</th>
-                      {{-- @if(Auth::user()->hasRole('Admin')) --}}
+                      @if(Auth::user()->hasRole('Admin'))
                       <th>Action</th>
-                      {{-- @endif --}}
+                      @endif
                     </tr>
                   </thead>
 
@@ -73,13 +73,13 @@
                         <td>
                         <h6>{{ $user->email }}</h6>
                         </td>
-{{-- @if(Auth::user()->hasRole('Admin')) --}}
+@if(Auth::user()->hasRole('Admin'))
                         <td class="action">
                           <ul>
                           <li><a href="{{ route('user-remove',['id'=>$user->id])}}" target="blank" class="message">Remove Buyer</a></li>
                           </ul>
                         </td>
-{{-- @endif --}}
+@endif
                       </tr>
                     @endforeach
                    

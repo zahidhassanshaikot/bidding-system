@@ -52,6 +52,18 @@ class FrontEndController extends Controller
         $users->delete();
         return redirect()->back()->with('message','Successfully remove user');
     }
+    public function removeProduct($id){
+        $product = Product::find($id);
+        $bids=Bid::where('product_id',$id)->get();
+        foreach($bids as $bid){
+            $bid->delete();
+        }
+        if (File::exists($product->image)) {
+            unlink($product->image);
+        }
+        $product->delete();
+        return redirect()->back()->with('message','Successfully remove product');
+    }
     public function addProduct(){
         return view('front-end.add-product');
     }
@@ -119,13 +131,12 @@ class FrontEndController extends Controller
         return redirect()->back()->with('message','Bid status successfully changed');
     }
     public function monthlySellProduct(){
-$month=Carbon::now()->format('Y-m');
+// $month=Carbon::now()->format('Y-m');
 // return $month;
         $bids=Bid::where('status','Accept')
-        ->where('bid_info.created_at','%like%',$month)
+        ->whereMonth('bid_info.created_at',Carbon::now()->month)
         ->join('users','users.id','=','bid_info.bidder_id')
-        ->join('product','product.id','=','bid_info.product_id')
-        
+        ->join('product','product.id','=','bid_info.product_id') 
         ->select('bid_info.*','product.p_name','product.price','product.auction_id','users.fname','users.lname','users.phone_no','users.email')
         ->orderBy('bid_info.bid_price','DESC')
         ->get();
@@ -180,5 +191,13 @@ $month=Carbon::now()->format('Y-m');
             return redirect('/');
     }
 
-    
+    public function searchProduct(Request $request){ 
+        $prodcuts=Product::where('p_name','like','%'.$request->search_string.'%')
+        ->orwhere('p_type','like','%'.$request->search_string.'%')->get(); 
+        return view('front-end.product',['prodcuts'=>$prodcuts]);
+    }
+    public function searchDdl($search_string){ 
+        $prodcuts=Product::where('p_type','like','%'.$search_string.'%')->get(); 
+        return view('front-end.product',['prodcuts'=>$prodcuts]);
+    }
 }
